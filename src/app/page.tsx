@@ -3,7 +3,7 @@ import { Carousel } from "@/components/ui/carousel";
 import { Car } from "lucide-react";
 import { useEffect } from "react";
 import { DEFAULT_MAX_VERSION } from "tls";
-
+import { Hero } from "./_components/Hero";
 const options = {
   method: "GET",
   headers: {
@@ -12,7 +12,7 @@ const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMzk2OTBmOTgzMGNlODA0Yjc4OTRhYzFkZWY0ZjdlOSIsIm5iZiI6MTczNDk0OTM3MS43NDIsInN1YiI6IjY3NjkzOWZiYzdmMTcyMDVkMTBiMGIxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2r2TerxSJdZGmGVSLVDkk6nHT0NPqY4rOcxHtMNt0aE",
   },
 };
-type TopRatedMovies = {
+export type Movie = {
   id: number;
   title: string;
   poster: string;
@@ -27,7 +27,7 @@ export default async function Home() {
   const data = await res.json();
   const movieData = data.results;
 
-  const filteredMovie = movieData.map((movie: TopRatedMovies) => ({
+  const filteredMovie = movieData.map((movie: Movie) => ({
     id: movie.id,
     title: movie.title,
     rating: movie.vote_average,
@@ -36,8 +36,11 @@ export default async function Home() {
   console.log(movieData);
   return (
     <div>
+      <div className="w-screen h-[246px]">
+        <Hero />
+      </div>
       <div className="grid grid-cols-2 mt-[20px]">
-        {filteredMovie.slice(0, 10).map((movie: TopRatedMovies) => (
+        {filteredMovie.slice(0, 10).map((movie: Movie) => (
           <div
             key={movie.id}
             className="w-[157px] h-[309px] mx-auto rounded-lg bg-[#F4F4F5] mb-[20px]"
