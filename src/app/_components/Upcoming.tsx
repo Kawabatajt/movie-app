@@ -1,11 +1,3 @@
-import Image from "next/image";
-import { Carousel } from "@/components/ui/carousel";
-import { useEffect } from "react";
-import { DEFAULT_MAX_VERSION } from "tls";
-import { Hero } from "./_components/Hero";
-import { Upcoming } from "./_components/Upcoming";
-import Link from "next/link";
-
 const options = {
   method: "GET",
   headers: {
@@ -14,17 +6,10 @@ const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMzk2OTBmOTgzMGNlODA0Yjc4OTRhYzFkZWY0ZjdlOSIsIm5iZiI6MTczNDk0OTM3MS43NDIsInN1YiI6IjY3NjkzOWZiYzdmMTcyMDVkMTBiMGIxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2r2TerxSJdZGmGVSLVDkk6nHT0NPqY4rOcxHtMNt0aE",
   },
 };
-export type Movie = {
-  id: number;
-  title: string;
-  poster: string;
-  rating: number;
-  vote_average: number;
-  overview: string;
-};
-export default async function Home() {
+import type { Movie } from "../page";
+export const Upcoming = async () => {
   const res = await fetch(
-    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
     options
   );
   const data = await res.json();
@@ -38,13 +23,10 @@ export default async function Home() {
   }));
   console.log(movieData);
   return (
-    <div>
-      <div className="w-screen h-[510px] mt-[11.5px] mb-[52px]">
-        <Hero />
-      </div>
-      <div className="grid grid-cols-2 mt-[20px]">
-        {filteredMovie.slice(0, 10).map((movie: Movie) => (
-          <Link href={`/movie/${movie.id}`}>
+    <div className="grid grid-cols-2 mt-[20px]">
+      {filteredMovie.slice(0, 10).map((movie: Movie) => {
+        return (
+          <div key={movie.id}>
             <div
               key={movie.id}
               className="w-[157px] h-[309px] mx-auto rounded-lg bg-[#F4F4F5] mb-[20px]"
@@ -75,10 +57,9 @@ export default async function Home() {
               </div>
               <h1 className="text-[14px] ml-[8px] leading-5">{movie.title}</h1>
             </div>
-          </Link>
-        ))}
-      </div>
-      <Upcoming />
+          </div>
+        );
+      })}
     </div>
   );
-}
+};
