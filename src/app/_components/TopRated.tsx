@@ -8,9 +8,9 @@ const options = {
 };
 import type { Movie } from "../page";
 import Link from "next/link";
-export const Upcoming = async () => {
+export const TopRated = async () => {
   const res = await fetch(
-    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
     options
   );
   const data = await res.json();

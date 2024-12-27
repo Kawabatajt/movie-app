@@ -8,9 +8,9 @@ const options = {
 };
 import type { Movie } from "../page";
 import Link from "next/link";
-export const Upcoming = async () => {
+export const Popular = async () => {
   const res = await fetch(
-    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+    "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
     options
   );
   const data = await res.json();
@@ -22,7 +22,6 @@ export const Upcoming = async () => {
     rating: movie.vote_average,
     poster: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
   }));
-  console.log(movieData);
   return (
     <div className="grid grid-cols-2 mt-[20px]">
       {filteredMovie.slice(0, 10).map((movie: Movie) => {

@@ -54,13 +54,13 @@ export default async function Page({ params }: Props) {
             </Badge>
           ))}
 
-          <p className="font-normal text-[16px] leading-6 text-left">
+          <p className="font-normal text-[16px] leading-6 text-left ml-[3px]">
             {data.overview}
           </p>
         </div>
       </div>
       <div className="px-[20px]">
-        <div className="flex gap-[53px] w-[335px] h-[41px] mb-[20px]">
+        <div className="flex gap-[70px] w-[335px] h-[61px] mb-[20px] mt-[20px] border-b-2 items-center border-[#E4E4E7]">
           <h1 className="font-bold text-[16px]">Director</h1>
           {creditData.crew
             .filter((detail: { job: string }) => detail.job === "Director")
@@ -68,28 +68,29 @@ export default async function Page({ params }: Props) {
               return <h2>{detail?.name}</h2>;
             })}
         </div>
-        <div className="flex gap-[53px] w-[335px] h-[41px] mb-[20px]">
+        <div className="flex gap-[75px] w-[335px] h-[61px]  mb-[20px] mt-[20px] border-b-2 items-center border-[#E4E4E7]">
           <h1 className="font-bold text-[16px]">Writers</h1>
-          <div>
+          <div className="flex flex-wrap gap-2">
             {creditData.crew
               .filter(
                 (detail: { department: string }) =>
                   detail.department === "Writing"
               )
+              .slice(0, 3)
               .map((detail: { name: string }) => {
                 return <h2>{detail?.name}</h2>;
               })}
           </div>
         </div>
-        <div className="flex gap-[53px] w-[335px] h-[41px]">
+        <div className="flex gap-[90px] w-[335px] h-[61px] mt-[20px] overflow-hidden border-b-2 items-center mb-[20px] border-[#E4E4E7]">
           <h1 className="font-bold text-[16px]">Stars</h1>
-          <div className="flex">
+          <div className="flex flex-wrap gap-2">
             {creditData.cast
               .filter(
                 (detail: { known_for_department: string }) =>
                   detail.known_for_department === "Acting"
               )
-              .slice(0, 4)
+              .slice(0, 2)
               .map((detail: { name: string }) => {
                 return <h2>{detail?.name}</h2>;
               })}

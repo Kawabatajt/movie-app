@@ -47,9 +47,9 @@ export const Hero = async () => {
                       {movie.title}
                     </h1>
                   </div>
-                  <div className="flex">
+                  <div className="flex gap-[5px] items-center">
                     <svg
-                      width="16"
+                      width="20"
                       height="14"
                       viewBox="0 0 16 14"
                       fill="none"
