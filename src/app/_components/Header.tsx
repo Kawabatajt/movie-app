@@ -19,7 +19,7 @@ export const Header = () => {
     }
   };
   return (
-    <div className="max-w-[375px] flex  mx-auto mt-[12px] items-center justify-between px-[20px]">
+    <div className="w-[375px] flex mx-auto mt-[12px] items-center justify-between px-[20px]">
       <div className={`flex gap-[8px] ${!isSearching && "hidden"} `}>
         <svg
           width="20"
@@ -64,11 +64,7 @@ export const Header = () => {
               />
             </svg>
           </PopoverTrigger>
-          <div className="absolute left-0 top-0">
-            <PopoverContent>
-              <p>hello</p>
-            </PopoverContent>
-          </div>
+          <PopoverContent>hello</PopoverContent>
         </Popover>
       </div>
       <div className="flex gap-[12px]">

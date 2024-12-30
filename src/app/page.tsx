@@ -16,7 +16,7 @@ export type Movie = {
 export default async function Home() {
   return (
     <div>
-      <div className="w-screen h-[510px] mt-[11.5px] mb-[52px]">
+      <div className="w-screen h-[510px] mt-[11.5px] mb-[72px]">
         <Hero />
       </div>
       <Section title="Upcoming" endpoint="upcoming" />
