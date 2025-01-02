@@ -1,3 +1,4 @@
+"use client";
 import type { Movie } from "../page";
 import Link from "next/link";
 export const MovieCard = ({ movie }: { movie: Movie }) => {
@@ -5,7 +6,7 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
     <Link href={`/movie/${movie.id}`} className="m-0">
       <div
         key={movie.id}
-        className="w-[157px] h-[309px] mx-auto rounded-lg bg-[#F4F4F5]"
+        className="w-[157px] h-[309px] mx-auto rounded-lg bg-[#F4F4F5] md:w-[229px] md:h-[439px]"
       >
         <img
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}

@@ -20,7 +20,6 @@ export default async function Section({ title, endpoint }: Props) {
     options
   );
   const resJson = await res.json();
-  console.log(resJson);
   const movies: Movie[] = resJson.results.slice(0, 10);
   return (
     <div>
@@ -30,7 +29,7 @@ export default async function Section({ title, endpoint }: Props) {
           See more <ArrowRight className="w-[20px] h-[20px] stroke-[1.5px]" />
         </Link>
       </div>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 md:gap-5">
         {movies.map((movie) => (
           <MovieCard movie={movie} />
         ))}
