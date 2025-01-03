@@ -1,27 +1,30 @@
 "use client";
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Genres } from "./genres";
+import { Genres } from "./Genres";
 
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"], style: ["italic"] });
 export const Header = () => {
   const [isSearching, setIsSearching] = useState(true);
+  const [open, setOpen] = useState(false);
   const handleFocus = () => {
+    console.log({ isSearching });
     if (isSearching) {
       setIsSearching(false);
     } else {
       setIsSearching(true);
+      setOpen(false);
     }
   };
   return (
-    <div className="w-[375px] flex mx-auto mt-[12px] items-center justify-between px-[20px]">
+    <div className="flex mx-auto mt-[12px] items-center justify-between px-[20px] relative">
       <Link href="/">
         <div className={`flex gap-[8px] ${!isSearching && "hidden"} `}>
           <svg
@@ -49,11 +52,12 @@ export const Header = () => {
       <div
         className={`lg:block ${
           !isSearching ? "block" : "hidden"
-        } px-[16px] py-[8px] border-[1px] shadow-sm rounded-md relative`}
+        } px-[16px] py-[8px] border-[1px] shadow-sm rounded-md`}
       >
-        <Popover>
+        <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger>
             <svg
+              onClick={() => setOpen(true)}
               width="10"
               height="5"
               viewBox="0 0 10 5"
@@ -68,16 +72,79 @@ export const Header = () => {
               />
             </svg>
           </PopoverTrigger>
-          <PopoverContent>
-            <Genres />
+          <PopoverContent className="mt-[20px]">
+            <div className="pb-[5px] border-b-2 mb-[20px] ">
+              <h1>Genres</h1>
+              <p>See the list of the movies by genre</p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Genres onChange={() => handleFocus()} />
+            </div>
           </PopoverContent>
         </Popover>
       </div>
       <div className="flex gap-[12px]">
-        <div>
-          <Input onFocus={handleFocus} />
+        <div className={`${isSearching && "hidden"} w-[300px] relative`}>
+          <div className="absolute bottom-3 left-2">
+            <svg
+              width="14"
+              height="13"
+              viewBox="0 0 14 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13 12.5L10.1333 9.63333M11.6667 5.83333C11.6667 8.77885 9.27885 11.1667 6.33333 11.1667C3.38781 11.1667 1 8.77885 1 5.83333C1 2.88781 3.38781 0.5 6.33333 0.5C9.27885 0.5 11.6667 2.88781 11.6667 5.83333Z"
+                stroke="grey"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <Input />
+          <div onClick={handleFocus} className="absolute top-3.5 right-3">
+            <svg
+              width="10"
+              height="9"
+              viewBox="0 0 10 9"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 0.5L1 8.5M1 0.5L9 8.5"
+                stroke="#09090B"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         </div>
-        <div className="w-[36px] h-[36px] border-[1px] shadow-sm rounded-md flex items-center justify-center ">
+        <div
+          onClick={handleFocus}
+          className={`w-[36px] h-[36px] border-[1px] shadow-sm rounded-md flex items-center justify-center ${
+            !isSearching && "hidden"
+          }`}
+        >
+          <svg
+            width="14"
+            height="13"
+            viewBox="0 0 14 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13 12.5L10.1333 9.63333M11.6667 5.83333C11.6667 8.77885 9.27885 11.1667 6.33333 11.1667C3.38781 11.1667 1 8.77885 1 5.83333C1 2.88781 3.38781 0.5 6.33333 0.5C9.27885 0.5 11.6667 2.88781 11.6667 5.83333Z"
+              stroke="#18181B"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+        <div
+          className={`w-[36px] h-[36px] border-[1px] shadow-sm rounded-md flex items-center justify-center ${
+            !isSearching && "hidden"
+          }`}
+        >
           <svg
             width="14"
             height="13"
