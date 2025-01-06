@@ -10,6 +10,8 @@ import {
 import { Genres } from "./Genres";
 
 import { Inter } from "next/font/google";
+import { SearchInput } from "./Input";
+import { SearchMainPage } from "./SearchMainPage";
 const inter = Inter({ subsets: ["latin"], style: ["italic"] });
 export const Header = () => {
   const [isSearching, setIsSearching] = useState(true);
@@ -24,7 +26,7 @@ export const Header = () => {
     }
   };
   return (
-    <div className="flex mx-auto mt-[12px] items-center justify-between px-[20px] relative">
+    <div className="flex mx-auto mt-[12px] items-center justify-between px-[20px] relative ">
       <Link href="/">
         <div className={`flex gap-[8px] ${!isSearching && "hidden"} `}>
           <svg
@@ -101,8 +103,11 @@ export const Header = () => {
               />
             </svg>
           </div>
-          <Input />
-          <div onClick={handleFocus} className="absolute top-3.5 right-3">
+          <SearchMainPage />
+          <div
+            onClick={() => handleFocus()}
+            className="absolute top-3.5 right-3"
+          >
             <svg
               width="10"
               height="9"

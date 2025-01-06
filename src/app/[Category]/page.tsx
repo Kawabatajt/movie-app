@@ -16,7 +16,7 @@ export type PageInfo = {
   totalPages: number;
   currentPage: number;
 };
-const options = {
+export const options = {
   method: "GET",
   headers: {
     accept: "application/json",
