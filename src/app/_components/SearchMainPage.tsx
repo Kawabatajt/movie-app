@@ -10,7 +10,7 @@ import {
 import { SearchInput } from "./Input";
 import { ChangeEvent, useState } from "react";
 import { SearchResultList } from "./SearchResultList";
-export const SearchMainPage = () => {
+export const SearchMainPage = (handleFocus) => {
   const [searchValue, setSearchValue] = useState<string>("");
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -18,7 +18,9 @@ export const SearchMainPage = () => {
   return (
     <div className="relative z-50">
       <SearchInput handleChange={handleChange} value={searchValue} />
-      {searchValue && <SearchResultList searchValue={searchValue} />}
+      {searchValue && (
+        <SearchResultList searchValue={searchValue} handlefocus={handleFocus} />
+      )}
     </div>
   );
 };

@@ -97,6 +97,13 @@ export default async function Page({ params }: Props) {
           </div>
         </div>
       </div>
+      <div>
+        <div className="flex justify-between">
+          <h1 className="font-bold">More like this</h1>
+          <h2>see more</h2>
+        </div>
+        <div></div>
+      </div>
     </div>
   );
 }

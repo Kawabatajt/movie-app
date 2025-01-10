@@ -17,13 +17,9 @@ export const Header = () => {
   const [isSearching, setIsSearching] = useState(true);
   const [open, setOpen] = useState(false);
   const handleFocus = () => {
-    console.log({ isSearching });
-    if (isSearching) {
-      setIsSearching(false);
-    } else {
-      setIsSearching(true);
-      setOpen(false);
-    }
+    setIsSearching(false);
+    setOpen(false);
+    console.log(isSearching);
   };
   return (
     <div className="flex mx-auto mt-[12px] items-center justify-between px-[20px] relative ">
@@ -103,7 +99,7 @@ export const Header = () => {
               />
             </svg>
           </div>
-          <SearchMainPage />
+          <SearchMainPage handleFocus={handleFocus} />
           <div
             onClick={() => handleFocus()}
             className="absolute top-3.5 right-3"
